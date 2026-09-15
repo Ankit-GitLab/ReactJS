@@ -1,31 +1,34 @@
 import React from 'react'
 import {Bookmark} from 'lucide-react'
 
-const Card = () => {
+const Card = (props) => {
+console.log(props.company);
+
+
   return (
-    <div className='parent'>
+    <div className='card-wrapper'>
       <div className='card'>
       <div>
         <div className='top'>
-          <img src="https://logolook.net/wp-content/uploads/2021/06/Symbol-Amazon.png" alt="" />
+          <img src={props.brandLogo} alt={props.company} />
           <button>Save <Bookmark size={10}/> </button>
         </div>
 
         <div className='center'>
-            <h3>Amazon <span>5 days ago</span></h3>
-            <h2>Senior UI/UX Designer</h2>
+            <h3>{props.company} <span>{props.datePosted}</span></h3>
+            <h2>{props.post}</h2>
         </div>
       </div>
 
         <div className='tag'> 
-          <h4>part time</h4>
-          <h4>Senior Level</h4>
+          <h4>{props.tags}</h4>
+          <h4>{props.post}</h4>
         </div>
 
         <div className='bottom'>
           <div>
-              <h3>$120/hr</h3>
-              <p>Mumbai, India</p>
+              <h3>{props.pay}</h3>
+              <p>{props.location}</p>
           </div>
           <button>Apply</button>
         </div>
