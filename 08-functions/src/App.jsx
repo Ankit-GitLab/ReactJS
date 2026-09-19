@@ -3,10 +3,6 @@ import React from 'react'
 
 const App = () => {
 
-  function inputChange(){
-    console.log('User is Typing');
-    
-  }
 
   return (
     <div>
@@ -15,8 +11,15 @@ const App = () => {
         
       }}>Click here</button>
 
-      <input onChange={inputChange} type="text" placeholder='Enter name' />
+      <input onChange={function(elem){
+        console.log(elem.target.value);
+        
+      }}type="text" placeholder='Enter name'/>
 
+      <div onMouseMove={(elem)=>{
+          console.log(elem.clientX);
+          
+      }}className='box'></div>
 
     </div>
   )
