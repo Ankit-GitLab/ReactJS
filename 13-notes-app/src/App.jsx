@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { X } from 'lucide-react';
 
 const App = () => {
 
@@ -17,14 +16,19 @@ const App = () => {
     copyTask.push({title, details})  
 
     setTask(copyTask);
-
-    console.log(task);
     
-     
-
     setTitle('')
     setDetails('')
     
+  }
+
+  const deleteNote = (idx)=>{
+    const copyTask= [...task]
+
+    copyTask.splice(idx,1);
+
+    setTask(copyTask);
+  
   }
 
 
@@ -39,13 +43,13 @@ const App = () => {
 
           {/* phela input for heading */}
           <input 
-            type="text" 
+            type="text"
             placeholder='Enter Notes Heading'
             className='px-5 w-full py-2 font-medium border-2 outline-none rounded'
             value={title}
             onChange={(e)=>{
               setTitle(e.target.value)
-            }} 
+            }}
             />
 
             {/* detailed vala input  */}
@@ -67,17 +71,19 @@ const App = () => {
       </form>
       <div className='lg:w-1/2 lg:border-l p-10'>
       <h1 className='text-4xl font-bold'>Your Notes</h1>
-      <div className='flex flex-wrap items-start justify-start gap-5 m-5 h-full overflow-auto'>
+      <div className='flex flex-wrap items-start justify-start gap-5 m-5 h-[90%] overflow-auto'>
         {task.map(function(elem, idx){
 
-          return <div key={idx} className='relative h-52 overflow-auto w-40 bg-cover rounded-xl text-black p-4 bg-[url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRzsN6XJuyTlAcm9n5QMlrhpfdKbHIXM5okvHAHcK_YQ&s=10)]'>
+          return <div key={idx} className='flex justify-between flex-col items-start relative h-52 pb-5 overflow-auto w-40 bg-cover rounded-xl text-black p-4 bg-[url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHOI0reQLJbYio3nDn-3Do7tojc55WBcflQZPNwCsBcg&s=10)]'>
 
-            <h2 className='absolute top-5 right-5 bg-red-500 p-1 text-xs rounded-full'>
-              <X strokeWidth={3} /> 
-            </h2>
-            <h3 className='leading-tight text-xl font-bold'>{elem.title}</h3>
-            
-            <p  className='mt-4 leading-tight font-medium text-gray-500'>{elem.details}</p>
+          <div>
+            <h3 className='leading-tight text-lg font-bold'>{elem.title}</h3>
+            <p  className='mt-4 leading-tight text-xs font-semibold text-gray-500'>{elem.details}</p>
+          </div>
+          <button onClick={() => {
+            deleteNote(idx)
+          }} className='w-full bg-red-400 cursor py-1 text-xs rounded-2xl font-bold text-white '>Delete</button>
+
           </div>
 
         })}
