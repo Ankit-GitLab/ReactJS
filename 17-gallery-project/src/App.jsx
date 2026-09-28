@@ -5,14 +5,13 @@ import Card from './components/Card.jsx'
 
 const App = () => {
 
-
   const [userData, setUserData] = useState([])
 
   const [index, setIndex] = useState(1)
   const getData = async () =>{
     const response = await axios.get(`https://picsum.photos/v2/list?page=${index}&limit=16`)
 
-    setUserData(response.data)    
+    setUserData(response.data) 
   }
 
   useEffect(function(){
@@ -32,8 +31,7 @@ const App = () => {
 
   return (
     <div className='bg-black overflow-auto h-screen p-4 text-white'>
-      
-      
+           
       <div className='flex h-[60%] flex-wrap gap-2'>
         {printUserData}
       </div>
